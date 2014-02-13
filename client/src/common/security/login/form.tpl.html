@@ -1,0 +1,28 @@
+<form name="form" novalidate class="login-form">
+    <div class="modal-header">
+        <h4>Sign in</h4>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-warning" ng-show="authReason">
+            {{authReason}}
+        </div>
+        <div class="alert alert-error" ng-show="authError">
+            {{authError}}
+        </div>
+        <div class="alert alert-info">Please enter your login details</div>
+        <label>E-mail</label>
+        <input name="login" type="email" ng-model="user.email" required autofocus autocomplete="false">
+        <label>Password</label>
+        <input name="pass" type="password" ng-model="user.password" required autocomplete="false">
+        <p>this form is a bit buggy. pre-filled form cannot be validated, Sign In button not activated.</p>
+        <tt>form.input.$valid = {{form.input.$valid}}</tt><br>
+        <tt>form.input.$error = {{form.input.$error}}</tt><br>
+        <tt>form.$valid = {{form.$valid}}</tt><br>
+        <tt>form.$error.required = {{!!form.$error.required}}</tt><br>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary login" ng-click="login()" ng-disabled='form.$invalid'>Sign in</button>
+        <button class="btn clear" ng-click="clearForm()">Clear</button>
+        <button class="btn btn-warning cancel" ng-click="cancelLogin()">Cancel</button>
+    </div>
+</form>

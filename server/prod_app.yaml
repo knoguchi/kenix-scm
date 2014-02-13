@@ -1,0 +1,64 @@
+application: kenix-scm
+version: dev
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /_ah/login_required
+  script: do_openid_login.app
+
+- url: /_ah/spi/.*
+  script: main.application
+
+- url: /login
+  script: main.application
+
+- url: /favicon.ico
+  static_files: static/favicon.ico
+  upload: static/favicon.ico
+
+- url: /images
+  static_dir: static/assets/images
+
+- url: /
+  static_files: static/index.html
+  upload: static/index.html
+
+- url: /
+  static_dir: static
+
+libraries:
+- name: django
+  version: "1.5"
+- name: endpoints
+  version: 1.0
+
+skip_files:
+
+- ^(.*/)?app\.yaml
+- ^(.*/)?index\.yaml
+- ^(.*/)?node_modules/.*
+- ^(.*/)?app/.*
+- ^(.*/)?test/.*
+- ^(.*/)?build/.*
+- ^(.*/)?app\.yaml
+- ^(.*/)?app\.yml
+- ^(.*/)?index\.yaml
+- ^(.*/)?index\.yml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*)\.log
+- ^(.*/)?.*\.db
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?.*\.bak$
+- ^(.*/)?.*tmp$
+- ^(.*/)?scripts.*
+- ^(.*/)?tests.*
+- ^(.*/)?docs.*
+- ^data/.*
+- ^(.*/)?node_modules/.*
+- ^(.*/)?_darcs*
+- ^(.*/)?.*\.md

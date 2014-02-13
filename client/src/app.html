@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title ng-bind="pageTitle"></title>
+    <meta name="viewport" content="initial-scale=1,minimum-scale=1,width=device-width">
+
+    <!-- Stylesheets -->
+    <!--<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900' rel='stylesheet'
+          type='text/css'>
+    -->
+    <!-- usemin takes care of compilation -->
+    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>"/>
+    <% }); %>
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script>
+    <% }); %>
+    <!-- endbuild -->
+
+    <script type="text/javascript">
+        function startApp() {
+            var apisToLoad = 3; // must match number of calls to gapi.client.load()
+            var gCallback = function () {
+                if (--apisToLoad == 0) {
+                    //Manual bootstraping of the application
+                    var $injector = angular.bootstrap(document, ['kenix.scm']);
+                    console.log('Angular bootstrap complete ');
+                }
+                ;
+            };
+            gapi.client.load('kenix_core', 'v1.0', gCallback, '//' + window.location.host + '/_ah/api');
+            gapi.client.load('kenix_erp', 'v1.0', gCallback, '//' + window.location.host + '/_ah/api');
+            gapi.client.load('kenix_wms', 'v1.0', gCallback, '//' + window.location.host + '/_ah/api');
+        }
+    </script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if IE]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+<body ng-controller="AppCtrl">
+<header ng-include="'header.tpl.html'"></header>
+<div class="container">
+</div>
+<script src="https://apis.google.com/js/client.js?onload=startApp"></script>
+</body>
+</html>

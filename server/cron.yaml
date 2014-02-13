@@ -1,0 +1,8 @@
+# CAUTION: The server time is UTC.
+# 10AM in UTC is
+#     2AM in PST (UTC-8)
+
+cron:
+#- description: push notifications to APNS server in batch
+#  url: /_cron/devices/push-notifications-to-apns
+#  schedule: every 5 minutes
